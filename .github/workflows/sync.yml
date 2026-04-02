@@ -138,5 +138,5 @@ jobs:
         run: git push --force origin upstream-sync:upstream-sync
 
       - name: Push release/main
-        if: success() && steps.inputs.outputs.update_release_branch == 'true' && (steps.diff.outputs.release_changed == 'true' || steps.inputs.outputs.force_push == 'true')
+        if: success() && vars.AUTO_RELEASE_ENABLED != 'false' && steps.inputs.outputs.update_release_branch == 'true' && (steps.diff.outputs.release_changed == 'true' || steps.inputs.outputs.force_push == 'true')
         run: git push --force origin HEAD:release/main
